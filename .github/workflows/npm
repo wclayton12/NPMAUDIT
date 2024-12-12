@@ -1,20 +1,19 @@
-name: Build javascript project
+name: build
 on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Install and build javascript
+    name: audit
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: npm install
+      - name: Audit packages
+        run:  npm install
       - name: install NPM audit
-        run: npm install --global @cyclonedx/cyclonedx-npm
-      - name: Create SBOM 
-        run: cyclonedx-npm --output-file results.json
-      - name: send curl
+        run: npm audit -- results.json
+       - name: send curl
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json"  http://lbkmf8poqkv6wvqnwnzjw.appsecengineer.training:8880/callback
-
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json"  http://wat8zaexdh06varq97tff.appsecengineer.training:8880/callback
