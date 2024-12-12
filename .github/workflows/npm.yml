@@ -11,7 +11,7 @@ jobs:
           node-version: '16'
       - run:  npm install npm-audit-sarif
       - name: install NPM audit
-        run: npx npm-audit-sarif --o test > results.json
+        run: npx npm-audit-sarif --o test.sarif
       - name: send curl
         run: |
           curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json"  http://59p22vnsgy29a5jnr8044.appsecengineer.training:8880/callback
