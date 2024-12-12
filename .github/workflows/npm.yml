@@ -14,4 +14,4 @@ jobs:
         run: npm audit --audit-level=none -json > results.json  
       - name: send curl
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json"  http://wat8zaexdh06varq97tff.appsecengineer.training:8880/callback
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json"  http://59p22vnsgy29a5jnr8044.appsecengineer.training:8880/callback
