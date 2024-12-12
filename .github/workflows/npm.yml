@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run:  npm install npm-audit-sarif
+      - run:  npm install
       - name: install NPM audit
         run: npm audit -audit-level=none -sarif > results.json
       - name: send curl
